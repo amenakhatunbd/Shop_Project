@@ -29,7 +29,13 @@
                <div class="col-md-6">
                   <div class="form-group">
                     <label>Product Category</label>
-                    <input type="text" name="category_id" class="form-control" value="{{$product->category_id}}" >
+                    <select name="category_id" class="form-control" value="">
+                      
+                      @foreach($products as $product)  
+                      <option value=""></option>     
+                      <option value="{{$product->category_id}}">{{$product->category_id}}</option>
+                      @endforeach
+                    </select>
                   </div>
                   <div class="form-group">
                     <label>Product Name</label>
