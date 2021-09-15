@@ -80,13 +80,8 @@
                 </li>
             </ul>
 
-          </li>
-        
-          <h1>hiiiiii.....</h1>
-
-          
-         
-        </ul>
+          </li>        
+      </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>

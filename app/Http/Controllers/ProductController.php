@@ -79,6 +79,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
+        $products = Product::with('categorys')->get();
+         
         return view('products.edit', get_defined_vars());
     }
 
@@ -92,6 +94,9 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
+        
+        $products = Product::with('categorys')->get();
+        
         $product->category_id = $request->category_id;
         $product->productName = $request->productName;
         $product->purchases = $request->purchases;
@@ -99,7 +104,7 @@ class ProductController extends Controller
         $product->save();
    
 
-   return redirect('/products') ;
+   return redirect('/products', get_defined_vars()) ;
         
     }
 

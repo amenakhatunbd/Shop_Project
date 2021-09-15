@@ -38,7 +38,14 @@
                   </div>
                   <div class="form-group">
                     <label>Product_id</label>
-                    <input type="text" name="product_id" class="form-control" value="" >
+
+                    <select name="product_id" class="form-control" value="">
+                        
+                      @foreach($saless as $sales)  
+                      <option value=""></option>     
+                      <option value="{{$sales->product_id}}">{{$sales->product_id}}</option>
+                      @endforeach
+                    </select>
                   </div>
                   
                 </div>

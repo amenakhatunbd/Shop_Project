@@ -29,8 +29,10 @@ class SalesController extends Controller
     public function create()
     {
        $saless= Sales::with('customers')->get();
-    //    $salesss= Sales::with('sales')->get();
-    //    dd($salesss);
+       
+       $saless= Sales::with('products')->get();
+       
+      
        
         return view('saless.create',get_defined_vars());
     }
