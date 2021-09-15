@@ -15,8 +15,8 @@ class CreateSalessTable extends Migration
     {
         Schema::create('saless', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('customer_id');
-            $table->tinyInteger('product_id');
+            $table->string('customer_id');
+            $table->string('product_id');
             $table->timestamps();
         });
     }

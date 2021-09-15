@@ -29,7 +29,12 @@
                <div class="col-md-6">
                   <div class="form-group">
                     <label>Customer_id</label>
-                    <input type="text" name="customer_id" class="form-control" value="" >
+                    <select name="customer_id" class="form-control" value="">
+                      @foreach($saless as $sales)  
+                      <option value=""></option>     
+                      <option value="{{$sales->customer_id}}">{{$sales->customer_id}}</option>
+                      @endforeach
+                    </select>
                   </div>
                   <div class="form-group">
                     <label>Product_id</label>

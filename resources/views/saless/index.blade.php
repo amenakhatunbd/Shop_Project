@@ -34,7 +34,14 @@
             <td>{{$i+=1}}</td>
             <td>{{$sales->customer_id}}</td>
             <td>{{$sales->product_id}}</td>
-            
+            <td>
+                <a href="{{url('/saless/'.$sales->id.'/edit')}}" class="btn btn-xs btn-primary">edit</a>
+                <form  action="{{url('/saless/'.$sales->id)}}" method="POST">
+                        @csrf
+                        <input type="hidden" name="_method" value="DELETE" >
+                        <button type="submit"  onclick="return confirm('are you sure?')" class="btn btn-xs btn-danger" value="DELETE">delete</button>
+                    </form>
+            </td>
         </tr>
         @endforeach
         

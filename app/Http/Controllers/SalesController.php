@@ -17,6 +17,7 @@ class SalesController extends Controller
     
     {
         $saless= Sales::all();
+     
         return view('saless.index',get_defined_vars());
     }
 
@@ -27,7 +28,11 @@ class SalesController extends Controller
      */
     public function create()
     {
-        return view('saless.create');
+       $saless= Sales::with('customers')->get();
+    //    $salesss= Sales::with('sales')->get();
+    //    dd($salesss);
+       
+        return view('saless.create',get_defined_vars());
     }
 
     /**
