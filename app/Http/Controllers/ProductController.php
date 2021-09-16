@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
+
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -15,7 +17,7 @@ class ProductController extends Controller
     public function index()
     {
 
-        $products = Product::all();
+        $products = Product::with('category')->get();
         // dd( $products);
         return view('products.index', get_defined_vars());
     }
@@ -27,7 +29,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $products = Product::with('categorys')->get();
+        $categorys = Category::get();
         // dd( $products);
         return view('products.create', get_defined_vars());
         //return view('products.create');

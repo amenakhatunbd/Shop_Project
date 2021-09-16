@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Purchase;
 use Illuminate\Http\Request;
+use App\Models\Supplier;
+use App\Models\Product;
+
 
 class PurchaseController extends Controller
 {
@@ -14,8 +17,8 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        $purchases = Purchase::all();
-        return view('purchases.index', get_defined_vars());
+        $purchases = Purchase::with('supplier','product')->get();
+      return view('purchases.index', get_defined_vars());
     }
 
     /**
@@ -25,7 +28,9 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        return view('purchases.create');
+     $suppliers = Supplier::get();
+     $products = Product::get();
+    return view('purchases.create', get_defined_vars());
     }
 
     /**
@@ -36,9 +41,9 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
+   
         $request->validate([
-            'supplier_id' => 'required',
-            'product_id' => 'required',
+            
             'quantity' => 'required',
             'unitPrice' => 'required',
             'totalprice' => 'required'
@@ -75,7 +80,12 @@ class PurchaseController extends Controller
      */
     public function edit($id)
     {
-        $purchase= Purchase::findOrFail($id);
+        $purchase = Purchase::with('supplier','product')->find($id);
+        
+        $suppliers = Supplier::get();
+        $products = Product::get();
+        //dd($purchases);
+        // $purchase= Purchase::findOrFail($id);
         return view('purchases.edit', get_defined_vars());
     }
 
@@ -89,15 +99,18 @@ class PurchaseController extends Controller
     public function update(Request $request, $id)
     {
         $purchase= Purchase::findOrFail($id);
+       
         $purchase->supplier_id = $request->supplier_id;
         $purchase->product_id = $request->product_id;
         $purchase->quantity = $request->quantity;
         $purchase->unitPrice = $request->unitPrice;
         $purchase->totalprice = $request->totalprice;
-        $purchase->save();
+
+        // dd($purchase);
+        $purchase->update();
    
 
-   return redirect('/purchases') ;
+        return redirect('/purchases') ;
     }
 
     /**

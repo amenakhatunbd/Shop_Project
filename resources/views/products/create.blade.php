@@ -29,10 +29,10 @@
                <div class="col-md-12">
                   <div class="form-group">
                     <label>Product Category</label>
-                    <select name="category_id" class="form-control" value="">
-                      @foreach($products as $product)  
-                      <option value=""></option>     
-                      <option value="{{$product->category_id}}">{{$product->category_id}}</option>
+                    <select name="category_id" class="form-control">
+                    <option value="" selected disabled>(:--Select product--:)</option>
+                      @foreach($categorys as $eachCategory)  
+                      <option value="{{$eachCategory->id}}">{{$eachCategory->category}}</option>
                       @endforeach
                     </select>
                   </div>

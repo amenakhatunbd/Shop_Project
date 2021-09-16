@@ -10,6 +10,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\HomeController;
 
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +32,7 @@ Route::resource('products', ProductController::class);
 Route::resource('purchases', PurchaseController::class);
 Route::resource('saless', SalesController::class);
 
-
+Route::post('purchase_update/{id}', [PurchaseController::class, 'update'])->name('purchase_update');
 
 Auth::routes();
 

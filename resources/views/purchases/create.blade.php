@@ -28,12 +28,23 @@
   
                <div class="col-md-6">
                   <div class="form-group">
-                    <label>Supplier_id</label>
-                    <input type="text" name="supplier_id" class="form-control" value="" >
+                    <label>Supplier </label>
+                    <select name="supplier_id" class="form-control">
+                      <option value="" selected disabled>(:--Select Supplier--:)</option>
+                      @foreach($suppliers as $eachSupplier)
+                      <option value="{{$eachSupplier->id}}">{{$eachSupplier->name}}</option>
+                      @endforeach
+                    </select>
                   </div>
                   <div class="form-group">
-                    <label>Product_id</label>
-                    <input type="text" name="product_id" class="form-control" value="" >
+                    <label>Product</label>
+                    <select name="product_id" class="form-control">
+                    <option value="" selected disabled>(:--Select Supplier--:)</option>
+                      @foreach($products as $product)  
+                      <option value="{{$product->id}}">{{$product->productName}}</option>
+                      @endforeach
+                    </select>
+
                   </div>
                   <div class="form-group">
                     <label>Quantity</label>

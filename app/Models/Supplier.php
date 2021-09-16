@@ -13,4 +13,10 @@ class Supplier extends Model
 
     protected $fillable = ['name', 'email', 'mobile'];
 
+    public function purchases()
+    {
+        return $this->belongsTo(Purchase::class);
+    }
+
+
 }
