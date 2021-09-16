@@ -13,12 +13,15 @@ class Product extends Model
 	public $timestamps = true;
     protected $fillable = ['category_id', 'productName', 'purchases', 'sales'];
 
-    public function categorys(){
+    public function category(){
         return $this->belongsTo(Category::class);
     }
 
     public function sales(){
         return $this->belongsTo(Sales::class);
+    }
+    public function purchase(){
+        return $this->belongsTo(Purchase::class);
     }
 
 }

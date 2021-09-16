@@ -15,8 +15,8 @@ class CreatePurchasesTable extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('supplier_id');
-            $table->tinyInteger('product_id');
+            $table->string('supplier_id');
+            $table->string('product_id');
             $table->float('quantity');
             $table->float('unitPrice');
             $table->float('totalprice');

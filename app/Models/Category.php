@@ -12,7 +12,7 @@ class Category extends Model
 	public $timestamps = true;
     protected $fillable = ['category'];
 
-    public function products(){
+    public function product(){
         return $this->hasMany(Product::class);
     }
 

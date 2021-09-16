@@ -22,19 +22,31 @@
             </ul>
         </div>
     @endif
-    
-    <form action="{{url('/purchases')}}" method="post" enctype="multipart/form-data">
+    <?php $suppliers?>
+    <form action="{{url('/purchase_update', $purchase->id)}}" method="post" enctype="multipart/form-data">
         @csrf
-  
+       
+     
                <div class="col-md-6">
                   <div class="form-group">
                     <label>Supplier_id</label>
-                    <input type="text" name="supplier_id" class="form-control" value="{{$purchase->supplier_id}}" >
+                    <select name="supplier_id" class="form-control">
+                      <option value="" selected disabled>(:--Select Supplier--:)</option>        
+                      @foreach($suppliers as $eachSupplier)
+                      <option value="{{$eachSupplier->id}}" @if($eachSupplier->id == $purchase->supplier_id) selected  @endif>{{$eachSupplier->name}}</option>
+                      @endforeach
+                    </select>
                   </div>
                   <div class="form-group">
                     <label>Product_id</label>
-                    <input type="text" name="product_id" class="form-control" value="{{$purchase->product_id}}" >
+                    <select name="product_id" class="form-control">
+                    <option value="" selected disabled>(:--Select Supplier--:)</option>
+                    @foreach($products as $product)  
+                      <option value="{{$product->id}}" @if($product->id == $purchase->product_id) selected  @endif>{{$product->productName}}</option>
+                    @endforeach
+                    </select>
                   </div>
+                  
                   <div class="form-group">
                     <label>Quantity</label>
                     <input type="text" name="quantity" class="form-control" value="{{$purchase->quantity}}" >
@@ -49,6 +61,7 @@
                   </div>
                    
                 </div>
+                 
                 <div class="form-group">
                     <label></label>
                     <input type="submit" class="btn btn-primary btn-block" value="Submit" required>

@@ -24,7 +24,7 @@
     <table class="table table-bordered table-responsive-lg">
         <tr>
             <th>Id</th>
-            <th>category_id</th>
+            <th>category name</th>
             <th>ProductName</th>
             <th>Purchases</th>
             <th>Sales</th>
@@ -34,7 +34,7 @@
             @foreach($products as $product)
         <tr>
             <td>{{$i+=1}}</td>
-            <td>{{$product->category_id}}</td>
+            <td>{{$product->category->category}}</td>
             <td>{{$product->productName}}</td>
             <td>{{$product->purchases}}</td>
             <td>{{$product->sales}}</td>

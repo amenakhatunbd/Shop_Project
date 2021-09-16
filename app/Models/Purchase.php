@@ -13,4 +13,13 @@ class Purchase extends Model
 	public $timestamps = true;
 
     protected $fillable = ['supplier_id', 'product_id', 'quantity', 'unitPrice', 'totalprice'];
+
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

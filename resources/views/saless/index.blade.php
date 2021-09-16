@@ -24,16 +24,16 @@
     <table class="table table-bordered table-responsive-lg">
         <tr>
             <th>Id</th>
-            <th>Customer_id</th>
-            <th>Product_id</th>            
+            <th>Customer Name</th>
+            <th>Product Name</th>            
             <th>Actions</th>
         </tr>
         <?php $i=0?>
         @foreach ($saless as $sales)
         <tr>
             <td>{{$i+=1}}</td>
-            <td>{{$sales->customer_id}}</td>
-            <td>{{$sales->product_id}}</td>
+            <td>{{$sales->customer->name}}</td>
+            <td>{{$sales->product->productName ?? ''}}</td>
             <td>
                 <a href="{{url('/saless/'.$sales->id.'/edit')}}" class="btn btn-xs btn-primary">edit</a>
                 <form  action="{{url('/saless/'.$sales->id)}}" method="POST">

@@ -13,8 +13,7 @@
         </div>
     </div>
 </div>
-   
-
+   <?php //dd(  $purchases); ?>
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p></p>
@@ -24,26 +23,29 @@
     <table class="table table-bordered table-responsive-lg">
         <tr>
             <th>Id</th>
-            <th>Supplier_id</th>
-            <th>Product_id</th>
+            <th>Supplier Name</th>
+            <th>Product Name</th>
             <th>Quantity</th>
             <th>Unit Price</th>
             <th>Total Price</th>
             <th>Actions</th>
         </tr>
         <?php $i=0?>
-        @foreach($purchases as $purchase)
-        <tr>
-            <td>{{$i+=1}}</td>
-            <td>{{$purchase->supplier_id}}</td>
-            <td>{{$purchase->product_id}}</td>
-            <td>{{$purchase->quantity}}</td>
-            <td>{{$purchase->unitPrice}}</td>
-            <td>{{$purchase->totalprice}}</td>
-            <td>
-            <a href="{{url('/purchases/'.$purchase->id.'/edit')}}" class="btn btn-xs btn-primary">edit</a>
+        @foreach($purchases as $key=> $value)
 
-            <form  action="{{url('/purchases/'.$purchase->id)}}" method="POST">
+        <?php //dd(  $value); ?>
+
+        <tr>
+            <td>{{ $i+=1 }}</td>
+            <td>{{ $value->supplier->name}}</td>
+            <td>{{ $value->product->productName ?? '' }}</td>
+            <td>{{$value->quantity}}</td>
+            <td>{{$value->unitPrice}}</td>
+            <td>{{$value->totalprice}}</td>
+            <td>
+            <a href="{{url('/purchases/'.$value->id.'/edit')}}" class="btn btn-xs btn-primary">edit</a>
+
+            <form  action="{{url('/purchases/'.$value->id)}}" method="POST">
                         @csrf
                         <input type="hidden" name="_method" value="DELETE" >
                         <button type="submit"  onclick="return confirm('are you sure?')" class="btn btn-xs btn-danger" value="DELETE">delete</button>

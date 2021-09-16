@@ -28,22 +28,21 @@
   
                <div class="col-md-6">
                   <div class="form-group">
-                    <label>Customer_id</label>
-                    <select name="customer_id" class="form-control" value="">
-                      @foreach($saless as $sales)  
-                      <option value=""></option>     
-                      <option value="{{$sales->customer_id}}">{{$sales->customer_id}}</option>
+                    <label>Customer</label>
+                    <select name="customer_id" class="form-control">
+                    <option value="" selected disabled>(:--Select Supplier--:)</option>
+                      @foreach($customer as $eachCustomer)  
+                      <option value="{{$eachCustomer->id}}">{{$eachCustomer->name}}</option>
                       @endforeach
                     </select>
                   </div>
                   <div class="form-group">
                     <label>Product_id</label>
 
-                    <select name="product_id" class="form-control" value="">
-                        
-                      @foreach($saless as $sales)  
-                      <option value=""></option>     
-                      <option value="{{$sales->product_id}}">{{$sales->product_id}}</option>
+                    <select name="product_id" class="form-control">
+                    <option value="" selected disabled>(:--Select Supplier--:)</option>
+                      @foreach($product as $eachproduct)  
+                      <option value="{{$eachproduct->id}}">{{$eachproduct->productName}}</option>
                       @endforeach
                     </select>
                   </div>

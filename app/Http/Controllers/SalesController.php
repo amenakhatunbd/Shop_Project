@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Sales;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class SalesController extends Controller
@@ -16,7 +18,7 @@ class SalesController extends Controller
 
     
     {
-        $saless= Sales::all();
+        $saless= Sales::with('customer','product')->get();
      
         return view('saless.index',get_defined_vars());
     }
@@ -28,12 +30,8 @@ class SalesController extends Controller
      */
     public function create()
     {
-       $saless= Sales::with('customers')->get();
-       
-       $saless= Sales::with('products')->get();
-       
-      
-       
+        $customer= Customer::get();
+        $product= Product::get();
         return view('saless.create',get_defined_vars());
     }
 
