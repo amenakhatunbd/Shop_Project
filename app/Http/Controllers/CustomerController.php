@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class CustomerController extends Controller
 {
@@ -28,7 +29,7 @@ class CustomerController extends Controller
     public function create()
     {
 
-   
+        
         return view('customers.create');
     }
 
@@ -41,9 +42,9 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:customers|max:255|min:3',
-            'email' => 'required|email',
-            'phone' => 'nullable|max:12|min:12',
+            'name' => 'required|max:255|min:3',
+            'email' => 'required|unique:customers|email',
+            'phone' => 'required|max:8|min:12',
         ]);
 
         $customer = new Customer();
@@ -52,8 +53,8 @@ class CustomerController extends Controller
         $customer->phone = $request->phone;
         $customer->save();
    
-
-   return redirect('/customers') ;
+   
+        return redirect('/customers') ;
 
     }
 
@@ -113,4 +114,44 @@ class CustomerController extends Controller
         return redirect()->route('customers.index')
             ->with('success', 'customer deleted successfully');
     }
+
+    public function checkEmail(Request $request){
+
+
+        $email = $request->input('email');
+        $isExists = Customer::where('email',$email)->first();
+        if($isExists){
+            return response()->json(array("exists" => true));
+        }else{
+            return response()->json(array("exists" => false));
+        }
+    }
+
+
+    public function checkName(Request $request){
+
+            
+        $name = $request->input('name');
+        $isExists = Customer::where('name',$name)->first();
+        if($isExists){
+            return response()->json(array("exists" => true));
+        }else{
+            return response()->json(array("exists" => false));
+        }
+    }
+
+
+    public function checkphone(Request $request){
+
+            
+        $phone = $request->input('phone');
+        $isExists = Customer::where('phone',$phone)->first();
+        if($isExists){
+            return response()->json(array("exists" => true));
+        }else{
+            return response()->json(array("exists" => false));
+        }
+    }
+
+
 }

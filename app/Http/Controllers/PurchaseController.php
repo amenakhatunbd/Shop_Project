@@ -57,8 +57,8 @@ class PurchaseController extends Controller
         $purchase->totalprice = $request->totalprice;
         $purchase->save();
    
-
-   return redirect('/purchases') ;
+   
+        return redirect('/purchases') ;
     }
 
     /**
@@ -80,8 +80,11 @@ class PurchaseController extends Controller
      */
     public function edit($id)
     {
-        $purchase = Purchase::with('supplier','product')->find($id);
-        
+
+
+
+        $purchase = Purchase::with('supplier','product')->find($id);      
+          
         $suppliers = Supplier::get();
         $products = Product::get();
         //dd($purchases);

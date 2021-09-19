@@ -27,8 +27,6 @@
     <input type="hidden" name="_method" value="PATCH">
         @csrf
   
-
-
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>Customer_id</label>

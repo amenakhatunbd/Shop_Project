@@ -6,6 +6,7 @@ use App\Models\Customer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Customer extends Model
 {
     use HasFactory;
@@ -20,4 +21,6 @@ class Customer extends Model
     {
         return $this->belongsTo(Sales::class);
     }
+
+   
 }

@@ -14,7 +14,6 @@
     </div>
 </div>
    
-
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p></p>
@@ -36,15 +35,13 @@
             <td>{{$customer->name}}</td>
             <td>{{$customer->email}}</td>
             <td>{{$customer->phone}}</td>
-            <td>
-                   
+            <td>                   
                 <a href="{{url('/customers/'.$customer->id.'/edit')}}" class="btn btn-xs btn-primary">Edit</a>
                 <form  action="{{url('/customers/'.$customer->id)}}" method="POST">
                         @csrf
                         <input type="hidden" name="_method" value="DELETE" >
                         <button type="submit"  onclick="return confirm('are you sure?')" class="btn btn-xs btn-danger" value="DELETE">Delet</button>
                     </form>
-
                 </td>
         </tr>
 
