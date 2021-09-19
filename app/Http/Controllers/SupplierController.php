@@ -108,8 +108,32 @@ class SupplierController extends Controller
     public function destroy(Supplier $supplier)
     {
         $supplier->delete();
-
-
         return redirect()->route('suppliers.index')->with('success', 'supplier deleted successfully');
     }
+
+
+    public function checkemailsupplir(Request $request){
+        $email = $request->input('email');
+        $isExists = Supplier::where('email',$email)->first();
+        if($isExists){
+            return response()->json(array("exists" => true));
+        }else{
+            return response()->json(array("exists" => false));
+        }
+    }
+
+
+
+
+
+    public function supplirname(Request $request){
+        $name = $request->input('name');
+        $isExists = Supplier::where('name',$name)->first();
+        if($isExists){
+            return response()->json(array("exists" => true));
+        }else{
+            return response()->json(array("exists" => false));
+        }
+    }
+
 }

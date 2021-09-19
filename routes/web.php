@@ -34,6 +34,25 @@ Route::resource('saless', SalesController::class);
 
 Route::post('purchase_update/{id}', [PurchaseController::class, 'update'])->name('purchase_update');
 
+
+
+// Route::post('/checkemail', [CustomerController::class, 'checkEmail']);
+
+Route::post('/checkemail', [CustomerController::class, 'checkEmail'])->name('checkemail');
+Route::post('/checkphone', [CustomerController::class, 'checkphone'])->name('checkphone');
+
+
+Route::post('/checkemailsupplir', [SupplierController::class, 'checkemailsupplir'])->name('checkemailsupplir');
+Route::post('/supplirname', [SupplierController::class, 'supplirname'])->name('supplirname');
+
+
+Route::post('/checkName', [CustomerController::class, 'checkName'])->name('checkName');
+
+
+Route::post('/category', [CategoryController::class, 'category'])->name('category');
+
+
+
 Auth::routes();
 
 
@@ -43,3 +62,10 @@ Auth::routes();
 Route::group(['middleware'=>'auth'], function(){
         Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
+
+
+
+
+
+
+

@@ -1,6 +1,8 @@
 @extends('layouts.master')
 
 @section('content')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
@@ -29,11 +31,14 @@
                <div class="col-md-6">
                   <div class="form-group">
                     <label>userName</label>
-                    <input type="text" name="name" class="form-control" value="" >
+                    <input type="text" name="name" onblur="duplicateName(this)" class="form-control" value="" >
+                    <span id="nm" style="display:none;color:red">name already taken </span>
+
                   </div>
                   <div class="form-group">
                     <label>Email</label>
-                    <input type="email" name="email" class="form-control" value="" >
+                    <input type="email" name="email" onblur="duplicateEmail(this)" class="form-control" value="" >
+                    <span id="eml" style="display:none;color:red">Email already taken </span>
                   </div>
                   <div class="form-group">
                     <label>phone</label>
@@ -43,9 +48,64 @@
                 </div>
                 <div class="form-group">
                     <label></label>
-                    <input type="submit" class="btn btn-primary btn-block" value="Submit" required>
+                    <input type="submit" id="submit" class="btn btn-primary btn-block" value="Submit" required>
                   </div>
 
     </form>
+
+
+    <script>
+            function duplicateEmail(element){
+                var email = $(element).val();
+                $.ajax({
+                    type: "POST",
+                    url: '{{url('checkemailsupplir')}}',
+                    data: {email:email, "_token": "{{ csrf_token() }}"},
+                    dataType: "json",
+                    success: function(res) {
+                        if(res.exists){
+                            $('#eml').show();
+                            $('#submit').attr('disabled',true);
+
+                        }else{
+                            $('#eml').hide();
+                            $('#submit').attr('disabled',false);
+                        }
+                    },
+                    error: function (jqXHR, exception) {
+
+                    }
+                });
+            }
+
+
+
+
+
+
+            function duplicateName(element){
+                var name = $(element).val();
+                $.ajax({
+                    type: "POST",
+                    url: '{{url('supplirname')}}',
+                    data: {name:name, "_token": "{{ csrf_token() }}"},
+                    dataType: "json",
+                    success: function(res) {
+                        if(res.exists){
+                            $('#nm').show();
+                            $('#submit').attr('disabled',true);
+
+                        }else{
+                            $('#nm').hide();
+                            $('#submit').attr('disabled',false);
+                        }
+                    },
+                    error: function (jqXHR, exception) {
+
+                    }
+                });
+            }
+
+    </script>
 
 @endsection
