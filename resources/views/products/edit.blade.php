@@ -22,18 +22,16 @@
             </ul>
         </div>
     @endif
-    
-    <form action="{{url('/products/')}}" method="post" enctype="multipart/form-data">
+ 
+    <form action="{{url('/product_update', $product->id)}}" method="post" enctype="multipart/form-data">
         @csrf
-  
-               <div class="col-md-6">
+        <div class="col-md-12">
                   <div class="form-group">
                     <label>Product Category</label>
-                    <select name="category_id" class="form-control" value="">
-                      
-                      @foreach($products as $product)  
-                      <option value=""></option>     
-                      <option value="{{$product->category_id}}">{{$product->category_id}}</option>
+                    <select name="category_id" class="form-control">
+                    <option value="" selected disabled>(:--Select product--:)</option>
+                      @foreach($categorys as $eachCategory)  
+                      <option value="{{$eachCategory->id}}" @if($eachCategory->id == $product->category_id) selected  @endif>{{$eachCategory->category}}</option>
                       @endforeach
                     </select>
                   </div>
@@ -53,8 +51,8 @@
                 <div class="form-group">
                     <label></label>
                     <input type="submit" class="btn btn-primary btn-block" value="Submit" required>
-                  </div>
-
+                </div>
+               
     </form>
 
 @endsection

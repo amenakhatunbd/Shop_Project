@@ -32,7 +32,7 @@
                   <div class="form-group">
                     <label>userName</label>
                     <input type="text" name="name" onblur="duplicateName(this)" class="form-control" value="" >
-                    <span id="nm" style="display:none;color:red">name already taken </span>
+                    <span id="msg" style="display:none;color:red;">This E-mail already taken.</span>
 
                   </div>
                   <div class="form-group">
@@ -92,11 +92,11 @@
                     dataType: "json",
                     success: function(res) {
                         if(res.exists){
-                            $('#nm').show();
+                            $('#msg').show();
                             $('#submit').attr('disabled',true);
 
                         }else{
-                            $('#nm').hide();
+                            $('#msg').hide();
                             $('#submit').attr('disabled',false);
                         }
                     },

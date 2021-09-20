@@ -26,7 +26,7 @@
     <form action="{{url('/saless')}}" method="post" enctype="multipart/form-data">
         @csrf
   
-               <div class="col-md-6">
+                <div class="col-md-6">
                   <div class="form-group">
                     <label>Customer</label>
                     <select name="customer_id" class="form-control">
@@ -48,7 +48,7 @@
                   </div>
                   
                 </div>
-                <div class="form-group">
+                  <div class="form-group">
                     <label></label>
                     <input type="submit" class="btn btn-primary btn-block" value="Submit" required>
                   </div>

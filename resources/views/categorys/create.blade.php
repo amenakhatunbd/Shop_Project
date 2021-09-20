@@ -31,9 +31,10 @@
                <div class="col-md-6">
                   <div class="form-group">
                     <label>Category Name</label>
-                    <input type="text" name="category" onblur="duplicateCategoty(this)" class="form-control" value="" >
-                    <span id="nm" style="display:none;color:red">name already taken </span>
-                  </div>
+                    <input type="text" name="category" id="category" onblur="duplicateCategoty(this)" class="form-control" value="" >
+                    <span id="msg" style="display:none;color:red;">This Category already taken.</span>
+
+                </div>
                   
                 <div class="form-group">
                     <label></label>
@@ -44,8 +45,7 @@
 
 
     <script>
-        function duplicateCategoty(element){
-          
+        function duplicateCategoty(element){          
           var category = $(element).val();
           $.ajax({
               type: "POST",
@@ -54,18 +54,19 @@
               dataType: "json",
               success: function(res) {
                   if(res.exists){
-                     $('#nm').show();
-                     $("#submit").attr('disabled',true);
+                    $('#msg').show();
+                     $('#submit').attr('disabled',true);
                   }else{
-                      $('#nm').hide();
-                      $("#submit").attr('disabled',false);
+                      $('#msg').hide();
+                      $('#submit').attr('disabled',false);
                   }
               },
               error: function (jqXHR, exception) {
 
               }
           });
+        }
 
-    </script>
+</script>
 
 @endsection

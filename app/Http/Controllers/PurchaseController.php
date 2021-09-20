@@ -87,8 +87,7 @@ class PurchaseController extends Controller
           
         $suppliers = Supplier::get();
         $products = Product::get();
-        //dd($purchases);
-        // $purchase= Purchase::findOrFail($id);
+        
         return view('purchases.edit', get_defined_vars());
     }
 

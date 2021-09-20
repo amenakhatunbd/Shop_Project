@@ -38,7 +38,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             
-            'category' => 'required|unique:categorys',
+            'category' => 'required',
            
         ]);
 
@@ -105,12 +105,8 @@ class CategoryController extends Controller
             ->with('success', 'customer deleted successfully');
     }
 
-
     public function category(Request $request){
-            
         $category = $request->input('category');
-
-        dd($category);
         $isExists = Category::where('category',$category)->first();
         if($isExists){
             return response()->json(array("exists" => true));
@@ -118,7 +114,4 @@ class CategoryController extends Controller
             return response()->json(array("exists" => false));
         }
     }
-
-
-
 }

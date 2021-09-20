@@ -29,7 +29,7 @@
      
                <div class="col-md-6">
                   <div class="form-group">
-                    <label>Supplier_id</label>
+                    <label>Supplier Name</label>
                     <select name="supplier_id" class="form-control">
                       <option value="" selected disabled>(:--Select Supplier--:)</option>        
                       @foreach($suppliers as $eachSupplier)
@@ -38,7 +38,7 @@
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>Product_id</label>
+                    <label>Product Name</label>
                     <select name="product_id" class="form-control">
                     <option value="" selected disabled>(:--Select Supplier--:)</option>
                     @foreach($products as $product)  

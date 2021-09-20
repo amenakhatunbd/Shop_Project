@@ -22,14 +22,14 @@
           <li class="nav-item menu-open">
            
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{url('/customers')}}" class="nav-link">
+              <li class="nav-item ">
+                <a href="{{url('/customers')}}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Customers</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{url('/suppliers')}}" class="nav-link">
+                <a href="{{url('/suppliers')}}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Suppliers</p>
                 </a>
@@ -58,6 +58,15 @@
                   <p>Saless</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{url('/samples')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Sample</p>
+                </a>
+              </li>
+
+
+
 
                  <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

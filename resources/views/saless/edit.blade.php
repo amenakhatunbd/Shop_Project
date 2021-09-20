@@ -27,26 +27,33 @@
     <input type="hidden" name="_method" value="PATCH">
         @csrf
   
-                <div class="col-md-6">
+              
+        <div class="col-md-6">
                   <div class="form-group">
-                    <label>Customer_id</label>
-                    <input type="text" name="customer_id" class="form-control" value="{{$sales->customer_id}}" >
+                    <label>Customer Name</label>
+                    <select name="customer_id" class="form-control">
+                    <option value="" selected disabled>(:--Select Supplier--:)</option>
+                      @foreach($customer as $eachCustomer)  
+                      <option value="{{$eachCustomer->id}}"  @if($eachCustomer->id == $sales->customer_id) selected  @endif>{{$eachCustomer->name}}</option>
+                      @endforeach
+                    </select>
                   </div>
                   <div class="form-group">
-                    <label>Product_id</label>
-                    <input type="text" name="product_id" class="form-control" value="{{$sales->product_id}}" >
+                    <label>Product Name</label>
+
+                    <select name="product_id" class="form-control">
+                    <option value="" selected disabled>(:--Select Supplier--:)</option>
+                      @foreach($product as $eachproduct)  
+                      <option value="{{$eachproduct->id}}"  @if($eachproduct->id == $sales->product_id) selected  @endif>{{$eachproduct->productName}}</option>
+                      @endforeach
+                    </select>
                   </div>
                   
                 </div>
-
-
-               
-                </div>
-                <div class="form-group">
+                  <div class="form-group">
                     <label></label>
                     <input type="submit" class="btn btn-primary btn-block" value="Submit" required>
                   </div>
-
     </form>
 
 @endsection
