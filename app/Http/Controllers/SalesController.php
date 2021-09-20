@@ -78,7 +78,14 @@ class SalesController extends Controller
      */
     public function edit($id)
     {
-        $sales = Sales::findOrFail($id);
+        $sales = Sales::with('customer','product')->find($id);
+        $customer= Customer::get();
+        $product= Product::get();
+
+
+
+
+        // dd($sales);
         return view('saless.edit',get_defined_vars());
 
     }

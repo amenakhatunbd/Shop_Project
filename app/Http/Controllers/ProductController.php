@@ -80,8 +80,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::findOrFail($id);
-        $products = Product::with('categorys')->get();
+        
+        $product = Product::with('category')->find($id);
+        // dd($products);
+        $categorys = Category::get();
          
         return view('products.edit', get_defined_vars());
     }
@@ -96,17 +98,16 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        
-        $products = Product::with('categorys')->get();
-        
+         
         $product->category_id = $request->category_id;
         $product->productName = $request->productName;
         $product->purchases = $request->purchases;
         $product->sales = $request->sales;
-        $product->save();
+        $product->update();
    
 
-   return redirect('/products', get_defined_vars()) ;
+
+   return redirect('/products') ;
         
     }
 
@@ -121,7 +122,17 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('products.index')->with('success', 'supplier deleted successfully');
-
-
     }
+
+    public function checkProduct(Request $request){
+        $productName = $request->input('productName');
+        $isExists = Product::where('productName',$productName)->first();
+        if($isExists){
+            return response()->json(array("exists" => true));
+        }else{
+            return response()->json(array("exists" => false));
+        }
+    }
+
+
 }

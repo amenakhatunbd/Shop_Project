@@ -122,10 +122,6 @@ class SupplierController extends Controller
         }
     }
 
-
-
-
-
     public function supplirname(Request $request){
         $name = $request->input('name');
         $isExists = Supplier::where('name',$name)->first();

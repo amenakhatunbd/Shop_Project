@@ -44,7 +44,7 @@ class CustomerController extends Controller
         $request->validate([
             'name' => 'required|max:255|min:3',
             'email' => 'required|unique:customers|email',
-            'phone' => 'required|max:8|min:12',
+            'phone' => 'nullable',
         ]);
 
         $customer = new Customer();

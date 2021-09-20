@@ -1,6 +1,8 @@
 @extends('layouts.master')
 
 @section('content')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
@@ -38,7 +40,8 @@
                   </div>
                   <div class="form-group">
                     <label>Product Name</label>
-                    <input type="text" name="productName" class="form-control" value="" >
+                    <input type="text" name="productName" onblur="duplicateProduct(this)" class="form-control" value="" >
+                    <span id="pn" style="color:red;display:none">already has taken</span>
                   </div>
                   <div class="form-group">
                     <label>Purchases</label>
@@ -51,10 +54,35 @@
                 </div>
                 <div class="form-group">
                     <label></label>
-                    <input type="submit" class="btn btn-primary btn-block" value="Submit" required>
+                    <input type="submit" id="submit" class="btn btn-primary btn-block" value="Submit" required>
                 </div>
 
     </form>
+<script>
+  function duplicateProduct(element){
+        var productName = $(element).val();
+        $.ajax({
+            type: "POST",
+            url: '{{url('checkProduct')}}',
+            data: {productName:productName, "_token": "{{ csrf_token() }}"},
+            dataType: "json",
+            success: function(res) {
+               
+              //  console.log(res);
+                if(res.exists){
+                   $('#pn').show();
+                   $('#submit').attr('disabled',true);
+                }else{
+                  $('#pn').hide();
+                  $('#submit').attr('disabled',false)
 
+                }
+            },
+            error: function (jqXHR, exception) {
+
+            }
+        });
+    }
+</script>
 
 @endsection

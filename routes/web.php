@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SampleController;
 
 use App\Http\Controllers\UserController;
 
@@ -36,6 +37,21 @@ Route::post('purchase_update/{id}', [PurchaseController::class, 'update'])->name
 
 
 
+
+Route::resource('samples', SampleController::class);
+Route::post('samples_update/{id}', [SampleController::class, 'update'])->name('samples_update');
+
+
+
+
+Route::resource('products', ProductController::class);
+Route::post('product_update/{id}', [ProductController::class, 'update'])->name('product_update');
+Route::post('/checkProduct', [ProductController::class, 'checkProduct'])->name('checkProduct');
+
+
+
+
+
 // Route::post('/checkemail', [CustomerController::class, 'checkEmail']);
 
 Route::post('/checkemail', [CustomerController::class, 'checkEmail'])->name('checkemail');
@@ -51,6 +67,9 @@ Route::post('/checkName', [CustomerController::class, 'checkName'])->name('check
 
 Route::post('/category', [CategoryController::class, 'category'])->name('category');
 
+
+
+Route::post('/checksample', [SampleController::class, 'checksample'])->name('checksample');
 
 
 Auth::routes();
